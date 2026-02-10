@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.mycompany</groupId>
+    <groupId>fcf877ac-6d27-4f65-81d2-da818c93132f</groupId>
     <artifactId>currency-conversion-system.api</artifactId>
     <version>1.0.0</version>
     <packaging>mule-application</packaging>
