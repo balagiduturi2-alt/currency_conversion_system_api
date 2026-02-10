@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- Java 17 compatible Mule runtime -->
-        <app.runtime>4.10.1</app.runtime>
+        <app.runtime>4.9.4</app.runtime>
         <!-- Mule Maven Plugin -->
         <mule.maven.plugin.version>4.6.1</mule.maven.plugin.version>
     </properties>
