@@ -44,7 +44,7 @@
             <applicationName>currency-conversion-sandbox</applicationName>
 
             <!-- Read from GitHub Actions -->
-            <environment>${anypoint.env}</environment>
+            <environment>${secrets.ANYPOINT_ENV}</environment>
 
             <!-- Trial limits -->
             <workers>1</workers>
