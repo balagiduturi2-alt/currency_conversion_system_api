@@ -1,0 +1,37 @@
+name: MuleSoft Deploy to Sandbox (Trial)
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy-sandbox:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Cache Maven
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: maven-${{ hashFiles('**/pom.xml') }}
+
+      - name: Build Mule App
+        run: mvn clean package -DskipTests
+
+      - name: Deploy to Sandbox (Trial)
+        run: |
+          mvn deploy \
+          -DmuleDeploy \
+          -Danypoint.username=${{ secrets.ANYPOINT_USERNAME }} \
+          -Danypoint.password=${{ secrets.ANYPOINT_PASSWORD }} \
+          -Danypoint.orgId=${{ secrets.ANYPOINT_ORG_ID }} \
+          -Danypoint.env=${{ secrets.ANYPOINT_ENV }}
