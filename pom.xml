@@ -8,7 +8,7 @@
 
   <groupId>com.mycompany</groupId>
   <artifactId>currency-conversion-system.api</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>mule-application</packaging>
 
   <name>currency-conversion-system.api</name>
@@ -43,8 +43,8 @@
             <!-- App name in Runtime Manager -->
             <applicationName>currency-conversion-sandbox</applicationName>
 
-            <!-- Read from GitHub Actions -->
-            <environment>${secrets.ANYPOINT_ENV}</environment>
+            
+            <environment>Sandbox</environment>
 
             <!-- Trial limits -->
             <workers>1</workers>
