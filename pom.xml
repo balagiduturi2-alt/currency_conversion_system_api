@@ -62,8 +62,6 @@
             <layout>default</layout>
         </repository>
     </distributionManagement>
-</plugins>
-</build>
 <dependencies>
     <dependency>
         <groupId>org.mule.connectors</groupId>
