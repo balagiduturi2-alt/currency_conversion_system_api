@@ -25,32 +25,27 @@
   </properties>
 <build>
     <plugins>
-        <plugin>
-            <groupId>org.mule.tools.maven</groupId>
-            <artifactId>mule-maven-plugin</artifactId>
-            <version>${mule.maven.plugin.version}</version>
-            <extensions>true</extensions>
+<plugin>
+    <groupId>org.mule.tools.maven</groupId>
+    <artifactId>mule-maven-plugin</artifactId>
+    <version>4.6.1</version>
+    <extensions>true</extensions>
+    <configuration>
+        <provider>MC</provider>
 
-            <configuration>
-                <classifier>mule-application</classifier>
-
-<cloudhub2Deployment>
-    <uri>https://anypoint.mulesoft.com</uri>
-    <muleVersion>${app.runtime}</muleVersion>
-
-    <username>${anypoint.username}</username>
-    <password>${anypoint.password}</password>
-
-    <applicationName>${app.name}</applicationName>
-    <environment>${env}</environment>
-
-    <target>Cloudhub-US-East-1</target>
-    <replicas>1</replicas>
-    <vCores>0.1</vCores>
-</cloudhub2Deployment>
-
-            </configuration>
-        </plugin>
+        <cloudHubDeployment>
+            <uri>https://anypoint.mulesoft.com</uri>
+            <muleVersion>4.9.0</muleVersion>
+            <username>${anypoint.username}</username>
+            <password>${anypoint.password}</password>
+            <applicationName>your-app-name</applicationName>
+            <environment>Sandbox</environment>
+            <region>us-east-1</region>
+            <workers>1</workers>
+            <workerType>MICRO</workerType>
+        </cloudHubDeployment>
+    </configuration>
+</plugin>
     </plugins>
 </build>
 
