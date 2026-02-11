@@ -34,23 +34,21 @@
             <configuration>
                 <classifier>mule-application</classifier>
 
-                <cloudHubDeployment>
-                    <uri>https://anypoint.mulesoft.com</uri>
-                    <muleVersion>${app.runtime}</muleVersion>
+<cloudhub2Deployment>
+    <uri>https://anypoint.mulesoft.com</uri>
+    <muleVersion>${app.runtime}</muleVersion>
 
-                    <username>${anypoint.username}</username>
-                    <password>${anypoint.password}</password>
-                    <applicationName>${app.name}</applicationName>
-                    <environment>${env}</environment>
+    <username>${anypoint.username}</username>
+    <password>${anypoint.password}</password>
 
-                    <region>us-east-1</region>
-                    <workers>1</workers>
-                    <workerType>MICRO</workerType>
+    <applicationName>${app.name}</applicationName>
+    <environment>${env}</environment>
 
-                    <objectStoreV2>true</objectStoreV2>
-                    <persistentQueues>true</persistentQueues>
+    <target>Cloudhub-US-East-1</target>
+    <replicas>1</replicas>
+    <vCores>0.1</vCores>
+</cloudhub2Deployment>
 
-                </cloudHubDeployment>
             </configuration>
         </plugin>
     </plugins>
