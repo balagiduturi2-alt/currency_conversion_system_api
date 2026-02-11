@@ -1,37 +1,93 @@
-name: Deploy Mule App to CloudHub 1.0
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-on:
-  push:
-    branches:
-      - main
+  <modelVersion>4.0.0</modelVersion>
 
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+  <groupId>fcf877ac-6d27-4f65-81d2-da818c93132f</groupId>
+  <artifactId>currency-conversion-system.api</artifactId>
+  <version>1.0.0</version>
+  <packaging>mule-application</packaging>
 
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
+  <name>currency-conversion-system.api</name>
 
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        distribution: 'temurin'
-        java-version: '17'
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    - name: Cache Maven packages
-      uses: actions/cache@v3
-      with:
-        path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+    <!-- Java 17 compatible runtime -->
+    <app.runtime>4.10.1</app.runtime>
 
-    - name: Build Mule Application
-      run: mvn clean package -DskipTests
+    <mule.maven.plugin.version>4.6.1</mule.maven.plugin.version>
+    <java.version>17</java.version>
+  </properties>
 
-    - name: Deploy to CloudHub
-      run: |
-        mvn deploy -DmuleDeploy \
-        -Danypoint.username=${{ secrets.ANYPOINT_USERNAME }} \
-        -Danypoint.password=${{ secrets.ANYPOINT_PASSWORD }} \
-        -Dapp.name=${{ secrets.APP_NAME }} \
-        -Denv=${{ secrets.ENV }}
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.mule.tools.maven</groupId>
+            <artifactId>mule-maven-plugin</artifactId>
+            <version>3.9.0</version>
+            <extensions>true</extensions>
+            <configuration>
+                <cloudHubDeployment>
+                    <uri>https://anypoint.mulesoft.com</uri>
+                    <muleVersion>4.4.0</muleVersion>
+                    <username>${anypoint.username}</username>
+                    <password>${anypoint.password}</password>
+                    <applicationName>${app.name}</applicationName>
+                    <environment>${env}</environment>
+                    <region>us-east-1</region>
+                    <workers>1</workers>
+                    <workerType>MICRO</workerType>
+                </cloudHubDeployment>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.mule.connectors</groupId>
+      <artifactId>mule-http-connector</artifactId>
+      <version>1.11.0</version>
+      <classifier>mule-plugin</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mule.connectors</groupId>
+      <artifactId>mule-sockets-connector</artifactId>
+      <version>1.2.7</version>
+      <classifier>mule-plugin</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mule.modules</groupId>
+      <artifactId>mule-validation-module</artifactId>
+      <version>2.0.8</version>
+      <classifier>mule-plugin</classifier>
+    </dependency>
+  </dependencies>
+
+  <repositories>
+    <repository>
+      <id>anypoint-exchange-v3</id>
+      <url>https://maven.anypoint.mulesoft.com/api/v3/maven</url>
+    </repository>
+
+    <repository>
+      <id>mulesoft-releases</id>
+      <url>https://repository.mulesoft.org/releases/</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>mulesoft-releases</id>
+      <url>https://repository.mulesoft.org/releases/</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+</project>
