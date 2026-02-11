@@ -7,7 +7,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>fcf877ac-6d27-4f65-81d2-da818c93132f</groupId>
-  <artifactId>currency-conversion-system.api</artifactId>
+  <artifactId>currency-conversion-system-api</artifactId>
   <version>1.0.0</version>
   <packaging>mule-application</packaging>
 
