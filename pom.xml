@@ -18,7 +18,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     <!-- Java 17 compatible runtime -->
-    <app.runtime>4.10.1</app.runtime>
+    <app.runtime>4.9.0</app.runtime>
 
     <mule.maven.plugin.version>4.6.1</mule.maven.plugin.version>
     <java.version>17</java.version>
@@ -34,7 +34,7 @@
             <configuration>
                 <cloudHubDeployment>
                     <uri>https://anypoint.mulesoft.com</uri>
-                    <muleVersion>4.4.0</muleVersion>
+                    <muleVersion>4.9.0</muleVersion>
                     <username>${anypoint.username}</username>
                     <password>${anypoint.password}</password>
                     <applicationName>${app.name}</applicationName>
