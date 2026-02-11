@@ -1,4 +1,4 @@
-name: Deploy Mule App to CloudHub 1.0
+name: Deploy Mule App to CloudHub 2.0
 
 on:
   push:
@@ -28,10 +28,13 @@ jobs:
     - name: Build Mule Application
       run: mvn clean package -DskipTests
 
-    - name: Deploy to CloudHub
+    - name: Deploy to CloudHub 2.0
       run: |
-        mvn deploy -DmuleDeploy \
+        mvn clean deploy -DmuleDeploy \
         -Danypoint.username=${{ secrets.ANYPOINT_USERNAME }} \
         -Danypoint.password=${{ secrets.ANYPOINT_PASSWORD }} \
         -Dapp.name=${{ secrets.APP_NAME }} \
-        -Denv=${{ secrets.ENV }}
+        -Denv=${{ secrets.ENV }} \
+        -Dtarget=${{ secrets.CH2_TARGET }} \
+        -DvCores=0.1 \
+        -Dreplicas=1
